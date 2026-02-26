@@ -1,45 +1,70 @@
-# AI Teachers
+# Teachers
 
-Teacher agents will be designed and slotted into courses later. This directory will hold their configs once ready.
+Teachers are **dynamic** — a teacher slot can be filled by a human, an AI agent, or both, switching fluidly per session.
 
-## Architecture
+## Teacher Types
 
-Each course can have a dedicated AI teacher — a specialized agent with domain expertise, personality, and access to course materials.
+| Type | Description | Delivery |
+|------|-------------|----------|
+| **Human (live)** | Real person streaming via LiveKit/RTMP | Live video/voice, chat |
+| **AI (live)** | Agent streaming via LiveKit + RTMP egress | Live video/voice, chat |
+| **AI (async)** | Agent available for 1:1 chat/review | Text, voice, code review |
+| **Hybrid** | Human streams live, AI handles Q&A/review between sessions | Both |
 
-### How Teachers Work
+## How It Works
 
-Teachers are specialized agents deployed via the unju-agent runtime. Each teacher has:
+Each **course** defines:
+- Curriculum (lessons, projects, assessments)
+- Required tools/services
+- Knowledge base
 
-1. **Domain expertise** — Trained on specific course content
-2. **Personality** — Unique teaching style (TBD by design)
-3. **Tools** — Access to relevant MCP services
-4. **Knowledge base** — Course materials and examples
+Each **session** has a teacher assignment:
+- Who's teaching (human ID or agent config)
+- Mode (live stream, 1:1 chat, async review)
+- Schedule (if live)
 
-### Teacher Template Structure
+The same course can have:
+- A human streaming Monday's live session
+- An AI handling Tuesday's practice/review
+- Both co-teaching Wednesday's workshop
 
+## Teacher Config
+
+```yaml
+# Per-session teacher assignment
+session:
+  course: "trading-101"
+  lesson: 3
+  teacher:
+    type: "human"          # human | ai | hybrid
+    human_id: "esper"      # if human/hybrid
+    agent_config: null      # if ai/hybrid — references agent template
+    mode: "livestream"      # livestream | chat | async
+    stream_targets:         # optional RTMP destinations
+      - platform: "tiktok"
+        stream_key: "..."
+      - platform: "youtube"
+        stream_key: "..."
 ```
-teacher-name/
-├── config.yaml         # Agent config (name, tools, voice, etc.)
-├── prompt.md           # System prompt
-├── knowledge/          # Course content
-└── examples/           # Code examples
-```
 
-### Interaction Modes
+## AI Teacher Capabilities
 
-- **Chat** — Ask questions, get explanations
-- **Code Review** — Submit code for feedback
-- **Debug** — Share logs for troubleshooting
-- **Discussion** — Strategic/conceptual conversations
+When an AI fills the teacher slot:
+- Full access to course knowledge base
+- LiveKit room for voice/video
+- RTMP egress for streaming to TikTok/YouTube
+- MCP tools relevant to the course (defi, code review, etc.)
+- Memory of student progress
 
-### Ethics
+## Human Teacher Capabilities
 
-- No hallucinations — say "I don't know" when unsure
-- No shortcuts — make students think
-- No financial advice
-- Safety first — warn about security risks
-- Honest, direct feedback
+When a human fills the teacher slot:
+- LiveKit room (camera + screen share)
+- RTMP egress for multi-platform streaming
+- AI co-pilot available (answers chat, generates overlays)
+- Student interaction tools (polls, Q&A queue)
+- Session recording + clip generation
 
 ## Status
 
-🟡 **Curriculum first, teachers later.** Courses and content are being built. Teacher agents will be designed by Esper and configured here when ready.
+🟡 **Teacher system designed. Configs added per course when ready.**
