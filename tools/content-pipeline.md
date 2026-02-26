@@ -14,52 +14,76 @@ TikTok/YouTube Short (60s)
 
 ## Content Types
 
-### 1. Hook Videos (60s)
+### 1. Hook Videos (60s) — Faceless AI
 - One concept, one lesson
-- Professor Perps: market traps, risk management
-- Dr. Deploy: hack breakdowns, security patterns
-- Agent Alpha: agent demos, tool building
-- Builder Bob: "ship it ugly" moments, UX fails
-- Meta Mike: philosophical bombs, pattern recognition
+- AI-generated visuals + TTS narration
+- Produced autonomously by Saraswati (content creator agent)
+- Styles: cinematic, anime, minimal, neon, documentary
+- Posted to TikTok, YouTube Shorts, Instagram Reels
 
 ### 2. Tutorial Videos (5-15 min)
 - Step-by-step walkthroughs
+- Can be human (livestream recording) or AI-generated
 - Screen recordings with voice
-- "Build X in Y minutes" format
 
 ### 3. Deep Dives (30-60 min)
 - Full course lessons
-- Case studies
-- Live coding sessions
+- Human teachers livestreaming or AI agents in LiveKit rooms
+- Case studies, live coding sessions
 
-## Production Pipeline
+## Production Pipeline (Faceless Videos)
 
 ```
-Script (MD) → Voice (ElevenLabs) → Visual (AI-generated) → Edit → Post
+Topic → Script → Voice (ElevenLabs TTS) → Visuals (Gemini AI) → Assembly (FFmpeg) → Post
 ```
 
 ### Script Format
-See sample-scripts/ for the template:
-- [0:00-0:05] Hook
-- [0:05-0:15] Problem
-- [0:15-0:35] Reveal
-- [0:35-0:50] Lesson
-- [0:50-1:00] CTA
+- [0:00-0:02] Hook — stop the scroll
+- [0:02-0:07] Problem — why should they care
+- [0:07-0:40] Content — the actual value
+- [0:40-0:55] Payoff — the insight or lesson
+- [0:55-1:00] CTA — follow, link in bio, etc.
 
-### Voice
-Each teacher has a unique ElevenLabs voice:
-- Professor Perps: deep, authoritative (onyx)
-- Dr. Deploy: measured, precise (shimmer)
-- Agent Alpha: energetic, enthusiastic (echo)
-- Builder Bob: direct, pragmatic (orion)
-- Meta Mike: contemplative, measured (asteria)
+### Autonomous Agent (Saraswati)
+Saraswati handles the full pipeline:
+1. `create_video_script` — structured scenes with narration + visual prompts
+2. `generate_video_assets` — TTS audio + AI images per scene (parallel)
+3. `assemble_video` — FFmpeg with Ken Burns, captions, transitions
+4. `generate_batch_scripts` — plan content calendar (5-10 videos at once)
+5. `regenerate_scene` — tweak individual scenes without redoing everything
 
-### Visuals
-- TradingView charts for trading content
-- Code editors for dev content
-- Architecture diagrams for agent content
-- Dark mode aesthetic (Tokyo Night palette)
-- Consistent branding across all teachers
+### Voice Options
+- nova — warm, confident (female)
+- asteria — clear, professional (female)
+- orion — deep, authoritative (male)
+- echo — energetic, dynamic (male)
+- shimmer — soft, mystical (female)
+
+### Visual Styles
+- cinematic — dramatic lighting, film quality
+- anime — vibrant, illustrated
+- minimal — clean, geometric
+- neon — cyberpunk, glowing
+- documentary — photorealistic
+
+## Content Strategy
+
+### Volume Game
+- Target: 3-5 videos/day per niche
+- Batch production: plan 10, produce 10, post over 3-5 days
+- A/B test hooks — same content, different first 2 seconds
+
+### Content Angles
+- Listicles ("5 things...")
+- Myths busted ("You've been told X, but...")
+- Mini-tutorials ("How to X in 60 seconds")
+- Story-driven ("This person did X and...")
+- Hot takes ("Unpopular opinion: ...")
+
+### Platform-Specific
+- **TikTok**: 30-90s, vertical 9:16, trending sounds optional
+- **YouTube Shorts**: 30-60s, vertical 9:16, SEO title matters
+- **Instagram Reels**: 30-90s, vertical 9:16, carousel follow-up
 
 ## Metrics
 - Views → Watch time → Link clicks → Signups → Enrollments → Completion → Revenue
